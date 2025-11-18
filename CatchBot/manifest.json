@@ -1,0 +1,11 @@
+﻿{
+  "Name": "CatchBot",
+  "Author": "AntParks",
+  "Version": "1.0.0",
+  "Description": "Automatically hooks fish for you when using the fishing rod.",
+  "UniqueID": "AntParks.CatchBot",
+  "EntryDll": "CatchBot.dll",
+  "MinimumApiVersion": "4.0.0",
+  "UpdateKeys": [],
+  "ContentPackFor": null
+}
