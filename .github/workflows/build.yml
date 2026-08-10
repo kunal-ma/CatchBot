@@ -1,0 +1,35 @@
+name: Build release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      attestations: write
+
+    env:
+      RELEASE_REF: refs/heads/main
+
+    steps:
+      - name: Fetch code
+        uses: actions/checkout@v4
+
+      - name: Add build environment
+        uses: Pathoschild/SMAPI-ModBuildWorkflow/add-build-environment@v1
+
+      - name: Set prerelease versions
+        uses: Pathoschild/SMAPI-ModBuildWorkflow/set-prerelease-versions@v1
+        if: github.ref != env.RELEASE_REF
+
+      - name: Build mods
+        run: dotnet build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: CatchBot
+          path: CatchBot/bin/**/CatchBot*.zip
